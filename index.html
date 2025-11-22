@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson Schedule - Organize Your Study Time</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.5rem;
+            color: #333;
+        }
+        
+        .official-site {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 2px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #4285f4;
+        }
+        
+        .cta-button {
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: #3367d6;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #4285f4, #34a853);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .secondary-button {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .secondary-button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            background-color: #e8f0fe;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: #4285f4;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .feature-card p {
+            color: #666;
+        }
+        
+        /* Screenshots Section */
+        .screenshots {
+            padding: 80px 0;
+            background-color: #f5f5f5;
+        }
+        
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .screenshot-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        
+        .screenshot-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .screenshot-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Data Usage Section */
+        .data-usage {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .data-usage-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .data-usage-content h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .data-usage-content p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .data-list {
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .data-list ul {
+            list-style-type: none;
+        }
+        
+        .data-list li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .data-list li:before {
+            content: "•";
+            color: #4285f4;
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+        
+        /* Download Section */
+        .download {
+            padding: 80px 0;
+            background-color: white;
+            text-align: center;
+        }
+        
+        .download-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .store-button {
+            display: flex;
+            align-items: center;
+            background-color: #333;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.3s;
+        }
+        
+        .store-button:hover {
+            transform: translateY(-3px);
+        }
+        
+        .store-button img {
+            height: 30px;
+            margin-right: 10px;
+        }
+        
+        /* Simple Footer */
+        .simple-footer {
+            background-color: #333;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .footer-links {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #4285f4;
+        }
+        
+        .footer-email {
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin: 20px 0;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero-buttons, .download-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .store-button {
+                width: 100%;
+                max-width: 250px;
+                justify-content: center;
+            }
+            
+            .screenshots-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="https://i.postimg.cc/7f4Ypqkz/unnamed.jpg" alt="Lesson Schedule Logo">
+                    <div>
+                        <h1>Lesson Schedule</h1>
+                        <p class="official-site">Official App Homepage</p>
+                    </div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#screenshots">Screenshots</a></li>
+                        <li><a href="#data-usage">Data Usage</a></li>
+                                            </ul>
+                </nav>
+                
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Organize Your Study Schedule</h2>
+                <p>Keep track of your classes, assignments, and exams with our intuitive lesson scheduling app designed for students.</p>
+                <div class="hero-buttons">
+                    <button class="cta-button">Download Now</button>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Powerful Features</h2>
+                <p>Our app comes packed with features designed to enhance your study experience</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📅</div>
+                    <h3>Schedule Management</h3>
+                    <p>Create and manage weekly lesson schedules for Monday through Friday with custom lesson names, times, and colors.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📝</div>
+                    <h3>Notes & Attachments</h3>
+                    <p>Add detailed notes for each lesson and attach images directly from your gallery with full-screen viewing.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⏰</div>
+                    <h3>Smart Reminders</h3>
+                    <p>Set custom reminders for lessons, assignments, and exams with flexible date and time options.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Multi-Language Support</h3>
+                    <p>Available in English, Lithuanian, and Spanish to accommodate users from different regions.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">☁️</div>
+                    <h3>Google Drive Backup</h3>
+                    <p>Securely backup your schedule data to Google Drive and restore it when needed.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Smart Auto-Fill</h3>
+                    <p>Automatically fills free lesson slots between your regular classes for a complete schedule.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshots Section -->
+    <section class="screenshots" id="screenshots">
+        <div class="container">
+            <div class="section-title">
+                <h2>App Screenshots</h2>
+                <p>Take a look at the beautiful and functional interface of our application</p>
+            </div>
+            <div class="screenshots-grid">
+                <a href="https://i.postimg.cc/BX3QdJ06/1.jpg" target="_blank" class="screenshot-item">
+                    <img src="https://i.postimg.cc/BX3QdJ06/1.jpg" alt="App Screenshot 1">
+                </a>
+                <a href="https://i.postimg.cc/D8hyt7TW/2.jpg" target="_blank" class="screenshot-item">
+                    <img src="https://i.postimg.cc/D8hyt7TW/2.jpg" alt="App Screenshot 2">
+                </a>
+                <a href="https://i.postimg.cc/VdwL3z80/3.jpg" target="_blank" class="screenshot-item">
+                    <img src="https://i.postimg.cc/VdwL3z80/3.jpg" alt="App Screenshot 3">
+                </a>
+                <a href="https://i.postimg.cc/hfnPHKBz/4.jpg" target="_blank" class="screenshot-item">
+                    <img src="https://i.postimg.cc/hfnPHKBz/4.jpg" alt="App Screenshot 4">
+                </a>
+                <a href="https://i.postimg.cc/HVmsfTgr/5.jpg" target="_blank" class="screenshot-item">
+                    <img src="https://i.postimg.cc/HVmsfTgr/5.jpg" alt="App Screenshot 5">
+                </a>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Usage Section -->
+    <section class="data-usage" id="data-usage">
+        <div class="container">
+            <div class="data-usage-content">
+                <h2>Data Usage & Privacy</h2>
+                <p>We believe in transparency about how your data is used in our application.</p>
+                
+                <div class="data-list">
+                    <h3>Data We Collect and Why:</h3>
+                    <ul>
+                        <li><strong>Schedule Data:</strong> Your lesson schedules, notes, and reminders are stored locally on your device and optionally backed up to your Google Drive account for data preservation.</li>
+                        <li><strong>Images:</strong> Photos you attach to lessons are stored locally on your device and included in Google Drive backups if you enable that feature.</li>
+                        <li><strong>App Preferences:</strong> Language settings and display preferences are stored locally to personalize your experience.</li>
+                        <li><strong>Google Account Information:</strong> When using Google Drive backup, we access only your email address to authenticate and store backup files in your personal Drive storage.</li>
+                    </ul>
+                    
+                    <h3>What We Don't Collect:</h3>
+                    <ul>
+                        <li>We do not collect personal identification information beyond what's necessary for app functionality</li>
+                        <li>We do not share your data with third parties for marketing or advertising purposes</li>
+                        <li>We do not track your usage across other applications or websites</li>
+                    </ul>
+                    
+                    <p>All data processing happens either locally on your device or through secure Google APIs when using backup features. You have full control over your data and can delete it at any time through the app settings.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+
+    <!-- Simple Footer -->
+    <footer class="simple-footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="https://ksx1234.github.io/androidstudiopamoka/index.html" target="_blank">Privacy Policy</a>
+                <a href="https://ksx1234.github.io/index/index.html" target="_blank">Terms of Service</a>
+            </div>
+            <div class="footer-email">
+                Contact: 2partwoking@gmail.com
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple script for smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add click handlers for buttons
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', function() {
+                document.getElementById('download').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        document.querySelector('.secondary-button').addEventListener('click', function() {
+            document.getElementById('features').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
